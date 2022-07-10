@@ -10,6 +10,7 @@ const indexRouter = require("./routes/index");
 const employeesRouter = require("./routes/employees");
 
 const app = express();
+//allow all
 app.use(cors());
 app.use(helmet());
 app.use(logger("dev"));
