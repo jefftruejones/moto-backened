@@ -3,12 +3,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const db = require("./db/mongo");
+const helmet = require("helmet");
 
 const indexRouter = require("./routes/index");
 const employeesRouter = require("./routes/employees");
 
 const app = express();
 app.use(cors());
+app.use(helmet());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
