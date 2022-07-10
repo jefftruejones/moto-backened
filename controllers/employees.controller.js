@@ -41,7 +41,7 @@ const read = async (request, response) => {
     const employee = await employeeModel.findOne({ _id: request.params.id });
     //check to see if employee exists
     if (employee.Status === "INACTIVE") {
-      throw new Error("employee has been deleted");
+      throw new Error("Employee has been deleted");
     } else {
       response.send(employee);
     }
@@ -112,7 +112,7 @@ const list = async (request, response) => {
         (employee) => employee.Status === "ACTIVE"
       );
       response.json({
-        filteredemployees,
+        employees: filteredemployees,
         totalPages: Math.ceil(count / limit),
         currentPage: page,
       });
