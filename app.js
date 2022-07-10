@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const db = require("./db/mongo");
 const helmet = require("helmet");
+const cors = require("cors");
 
 const indexRouter = require("./routes/index");
 const employeesRouter = require("./routes/employees");
