@@ -164,3 +164,5 @@ End point returns 204 and empty body on success.
 > More detailed validation and error messaging
 
 > Better HTTP status codes for the responses - as it stands, most of them are 200 or 400. In the future, I would make it so that they correspond specifically to the type of HTTP request.
+
+> Add Swagger docs with a library like Express-Swagger-Generator
