@@ -108,6 +108,8 @@ A GET request to the above URL returns a 10 documents, on the first page and inc
 }
 ```
 
+Endpoint returns 200 and Employee Info List upon success
+
 # POST -> http://localhost:4000/employees
 
 A post request to the above URL creates a new employee record. This request requires a body to be sent with it as JSON an all the below fields are required - if any are left out, the record will not be created.
@@ -123,6 +125,8 @@ A post request to the above URL creates a new employee record. This request requ
 
 For DateOfBirth, the above format is required or it will not create the record. When the request is submitted, it automatically adds the DateOfEmployment - this API considers the date the record is created to be the first day of employment.
 
+Endpoint returns 200 and Employee info upon success
+
 # PUT -> http://localhost:4000/employees/:id
 
 A put request to the above url will update the record of a specific employee. The path variable ":id" corresponds to the `_id` field each document has in MongoDB. This is required to update the employee. Additionally, this request takes the following body with each field being optional:
@@ -137,10 +141,26 @@ A put request to the above url will update the record of a specific employee. Th
 
 The API does not allow you to update the DateOfBirth or DateOfEmployment.
 
+Endpoint returns 200 and updated employee on success.
+
 # GET -> http://localhost:4000/employees/:id
 
 A get request to the above URL will return the information of the employee whose `_id` matches the ":id" sent with the request. If you try to request an employee who has alrady been deleted, an error message will be sent.
 
+Endpoint returns 200 and Employee info.
+
 # DELETE -> http://localhost:4000/employees/:id
 
 A delete request to the above url will "delete" the employee where the ":id" matches the `_id` of the employee record in the DB. None of the records are actually deleted from the DB - the Status is set to "INACTIVE", and the employee will be eliminated from the GET results. If you try to delete an employee who has alrady been deleted, an error message will be sent.
+
+This endpoint requires an authorization header that says `authorization: password` - obviously the choice to hardcode `password' into the codebase as the authcheck is not best practice, but this is just a POC.
+
+End point returns 204 and empty body on success.
+
+# Things I would Improve in the Future
+
+> More detailed logging/set up logging to be persisted in cloud infrastructure
+
+> More detailed validation and error messaging
+
+> Better HTTP status codes for the responses - as it stands, most of them are 200 or 400. In the future, I would make it so that they correspond specifically to the type of HTTP request.
