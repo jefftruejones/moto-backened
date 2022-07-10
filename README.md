@@ -2,11 +2,13 @@
 
 This is the backend API for an employee managment system. It is an express API utilizing a MongoDB atlass collection and mongoose library for queries. This ReadMe assumes you have some familiarity with MongoDB.
 
+[Link to currently running live API](https://moto-backend.herokuapp.com/employees)
+
 # Setting up MongoDB Atlas
 
 This project utilizes the free tier of MongoDB atlas which provides a free DB cluster for development and testing.
 
-You can find the instructions [here] (https://www.mongodb.com/docs/atlas/getting-started/)
+You can find the instructions [here](https://www.mongodb.com/docs/atlas/getting-started/)
 
 You will need to follow steps 1-5 - and "connect with your cluster", this shows a window with options. Select "connect to your application", copy the url that results and paste it in the .env file you will create in the next section.
 
