@@ -92,15 +92,16 @@ const list = async (request, response) => {
   const { page = 1, limit = 10, include = false } = request.query;
   try {
     //find employees in pages - default is one page with 10 results
-    const employees = await employeeModel
-      .find()
-      .limit(limit * 1)
-      .skip((page - 1) * limit)
-      .exec();
 
-    const count = await employeeModel.countDocuments();
     //return employees with active and inactive status
     if (include === "true") {
+      const employees = await employeeModel
+        .find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .exec();
+
+      const count = await employeeModel.countDocuments();
       response.json({
         employees,
         totalPages: Math.ceil(count / limit),
@@ -108,11 +109,15 @@ const list = async (request, response) => {
       });
     } else {
       //only return employees with active status
-      const filteredemployees = employees.filter(
-        (employee) => employee.Status === "ACTIVE"
-      );
+
+      const employees = await employeeModel
+        .find({ Status: "ACTIVE" })
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .exec();
+      const count = await employeeModel.countDocuments();
       response.json({
-        employees: filteredemployees,
+        employees: employees,
         totalPages: Math.ceil(count / limit),
         currentPage: page,
       });
